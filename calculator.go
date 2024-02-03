@@ -3,6 +3,8 @@ package calculator
 
 import (
 	"errors"
+	"fmt"
+	"math"
 )
 
 // Add takes numbers and
@@ -33,4 +35,14 @@ func Divide(a, b float64) (float64, error) {
 	}
 
 	return a / b, nil
+}
+
+// Sqrt returns the square root of its input,
+// or an error for negative inputs.
+func Sqrt(a float64) (float64, error) {
+	if a < 0 {
+		return 0, fmt.Errorf("square root of negative number not allowed: %f", a)
+	}
+
+	return math.Sqrt(a), nil
 }
