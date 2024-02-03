@@ -23,8 +23,10 @@ func Multiply(a, b float64) float64 {
 	return a * b
 }
 
-// Divide takes two numbers a and b, and
-// returns the result of dividing a by b
+// Divide takes two numbers and returns the
+// result of dividing the first by the
+// second, or an error if the second value
+// is zero.
 func Divide(a, b float64) (float64, error) {
 	if b == 0 {
 		return 0, errors.New("division by zero not allowed")
