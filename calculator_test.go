@@ -103,3 +103,13 @@ func TestDivide(t *testing.T) {
 		}
 	}
 }
+
+func TestDivideByZero(t *testing.T) {
+	t.Parallel()
+
+	_, err := calculator.Divide(1, 0)
+
+	if err == nil {
+		t.Error("want error for division by zero, got nil")
+	}
+}
