@@ -55,7 +55,7 @@ func TestGetAllBooks(t *testing.T) {
 
 	want := []bookstore.Book{
 		{Title: "For the Love of Go"},
-		{Title: "The ower of Go: Tools"},
+		{Title: "The Power of Go: Tools"},
 	}
 
 	got := bookstore.GetAllBooks(catalog)
@@ -68,12 +68,17 @@ func TestGetAllBooks(t *testing.T) {
 func TestGetBook(t *testing.T) {
 	t.Parallel()
 
-	catalog := []bookstore.Book{
-		{Title: "For the Love of Go", ID: 1},
+	catalog := map[uint]bookstore.Book{
+		1: {Title: "For the Love of Go", ID: 1},
+		2: {Title: "The Power of Go: Tools", ID: 2},
 	}
 
 	want := bookstore.Book{Title: "For the Love of Go", ID: 1}
-	got := bookstore.GetBook(catalog, 1)
+
+	got, err := bookstore.GetBook(catalog, 1)
+	if err != nil {
+		t.Fatal(err)
+	}
 
 	if !cmp.Equal(want, got) {
 		t.Error(cmp.Diff(want, got))
